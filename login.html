@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Nordic Loft - A modern and minimalist design concept inspired by Scandinavian aesthetics.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <title>Login - Nordic Loft</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+    <a href="index.html" id="headerlogo">
+      <img src="images/nl_logo.png" alt="Nordic Loft">
+    </a>
+    <nav>
+      <ul>
+        <li>
+          <a href="cart.html" class="cart-link">
+            <img src="images/cart_icon.png" alt="Cart">
+            <span id="cart-count" class="cart-count">0</span>
+          </a>
+        </li>
+        <li><a href="login.html" class="login-link">Login</a></li>
+        <li><a href="register.html" class="register-link">Register</a></li>
+      </ul>
+    </nav>
+  </header>
+    <main>
+    <div class="login-form">
+    <form action="action_page.php" autocomplete="on">
+        <h1>Login to start shop</h1>
+       <label for="email">Email</label>
+       <input type="text" id="username" name="username">
+       <label for="password">Password</label>
+       <input type="password" id="password" name="password">
+    <button type="submit">Login</button>
+       <p>Don't have an account? <a href="register.html">Sign up</a></p>
+    </form>
+    </div>
+    </main>
+    <footer>
+        &copy; 2024 Nordic Loft. All rights reserved.
+    </footer>
+    <script src="login.js"></script>
+    <script src="header.js"></script>
+</body>
+</html>

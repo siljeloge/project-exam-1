@@ -1,0 +1,731 @@
+
+/* Header, footer and index.html */
+header {
+    background-color: #EBE3CD;
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+body {
+    margin: 0%;
+    min-height: 10vh;
+}
+
+#headerlogo {
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+li {
+    display: inline;
+    padding: 20px;
+}
+
+nav a, .greeting {
+    text-decoration: none;
+    color: #7C786E;
+    letter-spacing: 3px;
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: 300;
+    font-size: 22px;
+    margin-right: 30px;
+}
+
+.cart-link { 
+    position: relative; 
+    display: inline-block; 
+}
+
+.cart-count {
+  position: absolute; top: -12px; right: -12px;
+  background: #A7A293; 
+  color: #fff; 
+  font-size: .8rem; 
+  font-weight: 700;
+  border-radius: 50%; 
+  padding: 2px 6px; 
+  min-width: 18px; 
+  text-align: center;
+}
+
+nav li .active {
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.cart-link img {
+    width: 35px;
+    height: 35px;
+    float: right;
+}
+
+footer{
+    height: 80px;
+    background-color: #EBE3CD;
+    color: #534859;
+    text-align: center;
+    padding: 30px;
+    font-size: 16px;
+    font-family: "Red Hat Display", sans-serif;
+}
+
+h1{
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: 100;
+    letter-spacing: 20px;
+    font-size: 70px;
+    color: #7C786E;
+    text-align: center;
+}
+
+h4{
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: 300;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #7C786E;
+    text-align: center;
+    margin: 0 200px 50px 200px;
+}
+
+hr{
+    height: 1px;
+    background: #7C786E;
+    margin: 30px 30px;
+}
+
+.carousel h1, .allproducts h1{
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: #7C786E;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.carousel {
+  position: relative;
+  width: 80%;
+  margin: 2rem auto;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 2.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 1rem;
+}
+
+.carousel-item img {
+  width: 50%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.carousel h3 {
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  color: #534859;
+  margin: 20px;
+}
+
+.carousel p {
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 20px;
+  color: #534859;
+}
+
+.carousel button {
+  font-family: "Red Hat Display", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    background-color: #A7A293;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  background-color: #534859;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  border-radius: 50%;
+}
+
+.carousel-control.prev { left: 150px; }
+.carousel-control.next { right: 150px; }
+
+.product-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    padding: 170px;
+}
+
+.product-list img {
+    width: 320px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.allproducts h1{
+    margin-bottom: -100px;
+}
+
+.product-list h2{
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: 300;
+    font-size: 26px;
+    color: #534859;
+    text-align: center;
+    max-width: 320px;
+}
+
+.product-list p{
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: 100;
+    font-size: 18px;
+    color: #534859;
+    width: 320px;
+    text-align: center;
+}
+
+.product-list button{
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    background-color: #A7A293;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 50px;
+    width: 320px;
+}
+
+/* The specific product-page */
+
+.product-page {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width: 1000px;
+}
+
+.product-page img {
+    width: 420px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "Red Hat Display", sans-serif;
+}
+
+.product-info h1{
+        font-size: 34px;
+        letter-spacing: 5px;
+        font-weight: 300;
+        color: #534859;
+        text-align: start;
+        margin-top: 1px;
+}
+
+.product-info h2, h3{
+        font-size: 20px;
+        color: #534859;
+        font-weight: normal;
+        margin-top: -10px;
+        margin-bottom: 30px;
+}
+
+.product-info h4, h5, p, .tags {
+        font-size: 16px;
+        font-weight: 300;
+        margin-top: -10px;
+        color: #534859;
+}
+
+.product-info .reviews {
+        font-size: 14px;
+        color: #534859;
+        font-weight: 300;
+        display: flex;
+        gap: 0.5rem;
+        padding-top: 20px;    
+}
+
+.product-info button {
+    padding: 15px 15px;
+    font-size: 16px;
+    background: #A7A293;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: fit-content;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.button-container {
+        display: inline;
+        margin-bottom: 50px;
+}
+
+/* Login.html */
+
+.login-form {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #7C786E;
+    border-radius: 8px;
+    color: #534859;
+    background-color: #f0eee7;
+    font-family: "Red Hat Display", sans-serif;
+}
+
+.login-form h1{
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: #534859;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.login-form label{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.login-form input{
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-form button{
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #534859;
+    background-color: #A7A293;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-form p{
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Register-page */
+#register-form {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #7C786E;
+    border-radius: 8px;
+    color: #534859;
+    background-color: #f0eee7;
+    font-family: "Red Hat Display", sans-serif;
+}
+
+#register-form h1{
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: #534859;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#register-form label{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+
+#register-form input{
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#register-form button{
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #534859;
+    background-color: #A7A293;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Shoppingcart */
+
+.cart-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #7C786E;
+    border-radius: 8px;
+    color: #534859;
+    background-color: #f0eee7;
+    font-family: "Red Hat Display", sans-serif;
+}
+.cart-container h1{
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: #534859;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.cart-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.cart-container th, .cart-container td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    font-size: 18px;
+}
+.cart-container th {
+    background-color: #A7A293;
+    color: white;
+}
+.cart-container td img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.cart-container .total {
+    text-align: right;
+    font-size: 18px;
+}
+
+.cart-container button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background: #A7A293;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* Checkout */
+
+.order-summary {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #7C786E;
+    border-radius: 8px;
+    color: #534859;
+    background-color: #f0eee7;
+    font-family: "Red Hat Display", sans-serif;
+}
+
+.order-summary h1{
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: #534859;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.order-summary table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-summary th, .order-summary td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.order-summary th {
+    background-color: #A7A293;
+    color: white;
+}
+
+.order-summary h3{
+    font-size: 30px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.checkout-form {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #7C786E;
+    border-radius: 8px;
+    color: #534859;
+    letter-spacing: 2px;
+    background-color: #f0eee7;
+    font-family: "Red Hat Display", sans-serif;
+}
+
+.checkout-form h1{
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: #534859;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.checkout-form label{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.checkout-form h2{
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: #534859;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.checkout-form input, .checkout-form select{
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.checkout-form button{
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #534859;
+    background-color: #A7A293;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* Small mobile (portrait) */
+@media (max-width: 480px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #EBE3CD;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+    gap: 10px;
+}
+
+#headerlogo img {
+  max-width: 120px;
+  height: auto;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+nav a, .greeting {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 5px;
+}
+
+.cart-link img {
+  width: 25px;
+  height: 25px;
+}
+
+  h1 {
+    font-size: 32px;
+    letter-spacing: 6px;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  h4 {
+    font-size: 16px;
+    margin: 0 1rem 20px 1rem;
+    text-align: center;
+  }
+
+  .carousel {
+    width: 100%;
+    margin: 1rem auto;
+  }
+
+  .carousel-control.prev{
+    left: 20px;
+  }
+
+  .carousel-control.next {
+    right: 20px;
+  }
+
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    padding: 1rem;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .product-list img {
+    width: 100%;
+    max-width: 160px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .product-list h2 {
+    font-size: 18px;
+    max-width: 160px;
+    margin: 0.3rem auto;
+  }
+
+  .product-list p {
+    font-size: 14px;
+    max-width: 160px;
+    margin: 0 auto;
+  }
+
+  .product-list button {
+    width: 100%;
+    max-width: 160px;
+    margin: 0.5rem auto;
+  }
+
+  .allproducts h1 {
+    margin-bottom: 20px;
+  }
+
+  footer {
+    padding: 1rem;
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+
+
+
+/* Large mobile (landscape) */
+@media (max-width: 768px) { ... }
+
+/* Tablets */
+@media (max-width: 1024px) { ... }
+
+/* Large screens */
+@media (min-width: 1200px) { ... }
