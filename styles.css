@@ -766,18 +766,18 @@ nav a, .greeting {
 
     #cart-table th, #cart-table td {
         padding: 6px;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     #cart-table button {
-        font-size: 12px;
-        padding: 3px 5px;
+        font-size: 14px;
+        padding: 4px 8px;
     }
 
     .cart-container table {
         width: 100%;
         border-collapse: collapse;
-        table-layout: fixed;
+        table-layout: auto;
     }
 
 }
