@@ -73,7 +73,7 @@ a:hover {
 footer{
     height: 80px;
     background-color: #EBE3CD;
-    color: #534859;
+    color: #7C786E;
     text-align: center;
     padding: 30px;
     font-size: 16px;
@@ -85,7 +85,7 @@ h1{
     font-weight: 100;
     letter-spacing: 20px;
     font-size: 70px;
-    color: #7C786E;
+    color: #534859;
     text-align: center;
 }
 
@@ -94,7 +94,7 @@ h4{
     font-weight: 300;
     font-size: 22px;
     letter-spacing: 2px;
-    color: #7C786E;
+    color: #534859;
     text-align: center;
     margin: 0 200px 50px 200px;
 }
@@ -109,7 +109,7 @@ hr{
     font-family: "Red Hat Display", sans-serif;
     font-size: 30px;
     letter-spacing: 2px;
-    color: #7C786E;
+    color: #534859;
     text-align: center;
     margin-bottom: 50px;
 }
@@ -123,7 +123,7 @@ hr{
 
 .carousel-track {
   display: flex;
-  transition: transform 4s ease-in-out;
+  transition: transform 3s ease-in-out;
 }
 
 .carousel-slide {
@@ -159,7 +159,7 @@ hr{
 }
 
 .carousel button {
-  font-family: "Red Hat Display", sans-serif;
+    font-family: "Red Hat Display", sans-serif;
     font-weight: 500;
     font-size: 16px;
     background-color: #A7A293;
@@ -262,7 +262,7 @@ hr{
 
 .product-info h1{
         font-size: 34px;
-        letter-spacing: 5px;
+        letter-spacing: normal;
         font-weight: 300;
         color: #534859;
         text-align: start;
@@ -277,25 +277,27 @@ hr{
         margin-bottom: 30px;
 }
 
-.product-info h4, h5, p, .tags {
+.product-info h4, h5, p, .tags, .rating, .discount {
         font-size: 16px;
         font-weight: 300;
-        margin-top: -10px;
+        margin-top: -5px;
         color: #534859;
 }
 
 .product-info .reviews {
-        font-size: 14px;
+        font-size: 16px;
         color: #534859;
         font-weight: 300;
         display: flex;
         gap: 0.5rem;
-        padding-top: 20px;    
+        padding-top: 20px;
+        font-style: oblique;
 }
 
 .product-info button {
     padding: 15px 15px;
     font-size: 16px;
+    font-weight: 500;
     background: #A7A293;
     color: #fff;
     border: none;
@@ -359,7 +361,7 @@ hr{
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    color: #534859;
+    color: #fff;
     background-color: #A7A293;
     font-size: 16px;
     display: block;
@@ -422,7 +424,7 @@ hr{
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    color: #534859;
+    color: #fff;
     background-color: #A7A293;
     font-size: 16px;
     display: block;
@@ -553,7 +555,6 @@ hr{
 .checkout-form h1{
     font-size: 40px;
     font-weight: 300;
-    letter-spacing: 6px;
     color: #534859;
     text-align: center;
     margin-bottom: 50px;
@@ -562,14 +563,13 @@ hr{
     display: block;
     margin-bottom: 10px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 300;
     text-align: center;
 }
 
 .checkout-form h2{
     font-size: 24px;
     font-weight: 300;
-    letter-spacing: 4px;
     color: #534859;
     text-align: center;
     margin-bottom: 50px;
@@ -594,7 +594,7 @@ hr{
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    color: #534859;
+    color: #fff;
     background-color: #A7A293;
     font-size: 16px;
     display: block;
@@ -744,6 +744,7 @@ nav a, .greeting {
     .product-info h1 {
         font-size: 28px;
         letter-spacing: 3px;
+        text-align: center;
     }
 
     .product-info h2, h3 {

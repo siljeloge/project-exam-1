@@ -63,8 +63,8 @@ function renderProduct(product) {
         <h1>${product.title}</h1>
         <h2>${product.description}</h2>
         <h3><strong>Price: ${product.price} NOK</strong></h3>
-        ${discountedPrice}
-        ${rating}
+        <div class="discount">${discountedPrice}</div>
+        <div class="rating">${rating}</div>
         <div class="tags">${tags}</div>
         <div class="reviews">${reviews}</div>
         <div class="button-container">
