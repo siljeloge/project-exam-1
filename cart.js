@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <button class="qty-btn" data-index="${index}" data-action="increase">+</button>
         </td>
         <td>${subtotal.toFixed(2)}</td>
-        <td><button class="remove-btn" data-index="${index}">Remove</button></td>
+        <td><button class="remove-btn" data-index="${index}">X</button></td>
       `;
       cartTableBody.appendChild(row);
     });
