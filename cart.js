@@ -69,19 +69,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td>
-          <img src="${item.image}" alt="${item.title}"
-               style="width:50px;height:50px;vertical-align:middle;margin-right:8px;">
-          ${item.title}
-        </td>
-        <td>${item.price}</td>
-        <td>
-          <button class="qty-btn" data-index="${index}" data-action="decrease">-</button>
-          <span>${item.quantity}</span>
-          <button class="qty-btn" data-index="${index}" data-action="increase">+</button>
-        </td>
-        <td><button class="remove-btn" data-index="${index}">Remove</button></td>
-      `;
+  <td class="product-cell">
+    <div class="product-info">
+      <img src="${item.image}" alt="${item.title}">
+      <p class="product-title">${item.title}</p>
+    </div>
+  </td>
+  <td>${item.price}</td>
+  <td>
+    <button class="qty-btn" data-index="${index}" data-action="decrease">-</button>
+    <span>${item.quantity}</span>
+    <button class="qty-btn" data-index="${index}" data-action="increase">+</button>
+  </td>
+  <td><button class="remove-btn" data-index="${index}">Remove</button></td>
+`;
       cartTableBody.appendChild(row);
     });
 

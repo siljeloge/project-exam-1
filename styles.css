@@ -764,9 +764,13 @@ nav a, .greeting {
         margin-bottom: 20px;
     }
 
-    #cart-table th, #cart-table td {
-        padding: 6px;
-        font-size: 15px;
+    #cart-table th{
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    #cart-table td {
+        font-size: 14px;
     }
 
     #cart-table button {
@@ -777,8 +781,16 @@ nav a, .greeting {
     .cart-container table {
         width: 100%;
         border-collapse: collapse;
-        table-layout: auto;
+        table-layout: fixed;
     }
+
+    .product-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    
+
 
 }
 
