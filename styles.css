@@ -716,9 +716,72 @@ nav a, .greeting {
     font-size: 14px;
     text-align: center;
   }
+
+    .product-page {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .product-page img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+    .product-info {
+        align-items: center;
+        text-align: center;
+        padding: 0 1rem;
+        max-width: 300px;
+    }
+
+    .product-info h1 {
+        font-size: 28px;
+        letter-spacing: 3px;
+    }
+
+    .product-info h2, h3 {
+        font-size: 18px;
+        margin: 0.5rem 0;
+    }
+
+    .product-info h4, h5, p, .tags {
+        font-size: 14px;
+        margin: 0.3rem 0;
+    }
+
+    .login-form, #register-form, .cart-container, .order-summary, .checkout-form {
+        width: 70%;
+        padding: 1rem;
+        margin: 20px auto;
+        font-size: 14px;
+    }
+
+    .login-form h1, #register-form h1, .cart-container h1, .order-summary h1, .checkout-form h1 {
+        font-size: 28px;
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+    }
+
+    #cart-table th, #cart-table td {
+        padding: 6px;
+        font-size: 10px;
+    }
+
+    #cart-table button {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+
+    .cart-container table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }   
+
 }
-
-
 
 
 /* Large mobile (landscape) */
