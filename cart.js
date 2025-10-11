@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      alert(`Thank you, ${name}! Your order (${cart.length} items) has been placed using ${paymentMethod.toUpperCase()}.`);
+      alert(`Thank you, ${name}! Your order has been placed using ${paymentMethod.toUpperCase()}.`);
       localStorage.removeItem("cart");
       cart = [];
       updateCartCount();
