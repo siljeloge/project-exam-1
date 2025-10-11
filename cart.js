@@ -9,9 +9,14 @@ if (!token && onProtectedPage) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // --- Load and validate cart ---
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (!Array.isArray(cart)) {
+    cart = [];
+    localStorage.removeItem("cart");
+  }
 
-  // Elements (may or may not exist depending on the page)
+  // Elements (may or may not exist depending on page)
   const cartTableBody  = document.querySelector("#cart-table tbody");
   const totalPriceEl   = document.getElementById("total-price");
   const clearCartBtn   = document.getElementById("clear-cart");
@@ -38,10 +43,25 @@ document.addEventListener("DOMContentLoaded", () => {
     return el;
   }
 
+  // ✅ Fixed version — prevents NaN
   function updateCartCount() {
     const el = ensureCartCountEl();
     if (!el) return;
-    const totalItems = cart.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
+
+    let totalItems = 0;
+    try {
+      const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+      if (Array.isArray(savedCart)) {
+        totalItems = savedCart.reduce((sum, item) => {
+          const qty = Number(item.quantity);
+          return sum + (isNaN(qty) ? 0 : qty);
+        }, 0);
+      }
+    } catch (err) {
+      console.warn("Cart data invalid, resetting:", err);
+      localStorage.removeItem("cart");
+    }
+
     el.textContent = totalItems;
   }
 
@@ -58,31 +78,32 @@ document.addEventListener("DOMContentLoaded", () => {
     let total = 0;
 
     if (cart.length === 0) {
-      cartTableBody.innerHTML = `<tr><td colspan="4">Your cart is empty.</td></tr>`; // ✅ fixed colspan
+      cartTableBody.innerHTML = `<tr><td colspan="4">Your cart is empty.</td></tr>`;
       if (totalPriceEl) totalPriceEl.textContent = "0";
       updateCartCount();
       return;
     }
 
     cart.forEach((item, index) => {
-      total += item.price * item.quantity;
+      const itemTotal = (Number(item.price) || 0) * (Number(item.quantity) || 0);
+      total += itemTotal;
 
       const row = document.createElement("tr");
       row.innerHTML = `
-  <td class="product-cell">
-    <div class="product-info">
-      <img src="${item.image}" alt="${item.title}">
-      <p class="product-title">${item.title}</p>
-    </div>
-  </td>
-  <td>${item.price}</td>
-  <td>
-    <button class="qty-btn" data-index="${index}" data-action="decrease">-</button>
-    <span>${item.quantity}</span>
-    <button class="qty-btn" data-index="${index}" data-action="increase">+</button>
-  </td>
-  <td><button class="remove-btn" data-index="${index}">Remove</button></td>
-`;
+        <td class="product-cell">
+          <div class="product-info">
+            <img src="${item.image}" alt="${item.title}">
+            <p class="product-title">${item.title}</p>
+          </div>
+        </td>
+        <td>${item.price}</td>
+        <td>
+          <button class="qty-btn" data-index="${index}" data-action="decrease">-</button>
+          <span>${item.quantity}</span>
+          <button class="qty-btn" data-index="${index}" data-action="increase">+</button>
+        </td>
+        <td><button class="remove-btn" data-index="${index}">Remove</button></td>
+      `;
       cartTableBody.appendChild(row);
     });
 
@@ -154,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     cart.forEach(item => {
-      const subtotal = item.price * item.quantity;
+      const subtotal = (Number(item.price) || 0) * (Number(item.quantity) || 0);
       total += subtotal;
 
       const row = document.createElement("tr");
@@ -170,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
   }
 
-  // Handle checkout form
+  // Checkout form submit
   if (checkoutForm) {
     renderOrderSummary();
     checkoutForm.addEventListener("submit", (e) => {
@@ -193,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Please fill in all delivery address fields.");
         return;
       }
+
       if (paymentMethod === "card" && !/^\d{16}$/.test(card)) {
         alert("Please enter a valid 16-digit card number.");
         return;
@@ -206,8 +228,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Initial render
-  renderCart();          // only runs on cart page
-  renderOrderSummary();  // only runs on checkout page
-  updateCartCount();     // always keeps badge updated
+  // --- Initial render ---
+  renderCart();
+  renderOrderSummary();
+  updateCartCount();
 });
