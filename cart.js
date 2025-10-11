@@ -1,6 +1,6 @@
 console.log("cart script loaded");
 
-// ✅ Only protect cart/checkout (so we can include this on other pages for the badge)
+// ✅ Protect cart and checkout pages (require login)
 const onProtectedPage = /\/(cart\.html|checkout\.html)$/i.test(window.location.pathname);
 const token = localStorage.getItem("token");
 if (!token && onProtectedPage) {
@@ -11,8 +11,8 @@ if (!token && onProtectedPage) {
 document.addEventListener("DOMContentLoaded", () => {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Elements (may or may not exist depending on page)
-  const cartTableBody = document.querySelector("#cart-table tbody");
+  // Elements (may or may not exist depending on the page)
+  const cartTableBody  = document.querySelector("#cart-table tbody");
   const totalPriceEl   = document.getElementById("total-price");
   const clearCartBtn   = document.getElementById("clear-cart");
   const checkoutBtn    = document.getElementById("checkout-btn");
@@ -49,21 +49,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // CART PAGE FUNCTIONS
   // --------------------------
   function renderCart() {
-    if (!cartTableBody) { updateCartCount(); return; }
+    if (!cartTableBody) { 
+      updateCartCount(); 
+      return; 
+    }
 
     cartTableBody.innerHTML = "";
     let total = 0;
 
     if (cart.length === 0) {
-      cartTableBody.innerHTML = `<tr><td colspan="5">Your cart is empty.</td></tr>`;
+      cartTableBody.innerHTML = `<tr><td colspan="4">Your cart is empty.</td></tr>`; // ✅ fixed colspan
       if (totalPriceEl) totalPriceEl.textContent = "0";
       updateCartCount();
       return;
     }
 
     cart.forEach((item, index) => {
-      const subtotal = item.price * item.quantity;
-      total += subtotal;
+      total += item.price * item.quantity;
 
       const row = document.createElement("tr");
       row.innerHTML = `
@@ -78,8 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <span>${item.quantity}</span>
           <button class="qty-btn" data-index="${index}" data-action="increase">+</button>
         </td>
-        <td>${subtotal.toFixed(2)}</td>
-        <td><button class="remove-btn" data-index="${index}">X</button></td>
+        <td><button class="remove-btn" data-index="${index}">Remove</button></td>
       `;
       cartTableBody.appendChild(row);
     });
@@ -136,7 +137,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // CHECKOUT PAGE FUNCTIONS
   // --------------------------
   function renderOrderSummary() {
-    if (!orderTableBody) { updateCartCount(); return; }
+    if (!orderTableBody) { 
+      updateCartCount(); 
+      return; 
+    }
 
     orderTableBody.innerHTML = "";
     let total = 0;
@@ -165,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
   }
 
+  // Handle checkout form
   if (checkoutForm) {
     renderOrderSummary();
     checkoutForm.addEventListener("submit", (e) => {
@@ -200,8 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Initial draw
-  renderCart();      // cart page only; safe otherwise
-  renderOrderSummary(); // checkout page only; safe otherwise
-  updateCartCount(); // ensure badge shows on any page
+  // Initial render
+  renderCart();          // only runs on cart page
+  renderOrderSummary();  // only runs on checkout page
+  updateCartCount();     // always keeps badge updated
 });
