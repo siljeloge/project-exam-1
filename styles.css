@@ -670,6 +670,7 @@ nav a, .greeting {
 
 .carousel-track {
     display: flex;
+    touch-action: pan-x;
     transition: transform 1.5s ease-in-out;
     will-change: transform; /* Optimizes performance for animations */
 }

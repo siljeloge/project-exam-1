@@ -143,37 +143,55 @@ if (prevBtn && nextBtn) {
   nextBtn.addEventListener("click", nextSlide);
 }
 
-// --- Touch swipe for mobile ---
+// --- Touch swipe for mobile (with vertical scroll handling) ---
 if (carouselTrack) {
   let startX = 0;
+  let startY = 0;
   let moveX = 0;
+  let moveY = 0;
   let isMoving = false;
 
   carouselTrack.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
+    const touch = e.touches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
     isMoving = true;
   });
 
-  carouselTrack.addEventListener("touchmove", (e) => {
-    if (!isMoving) return;
-    moveX = e.touches[0].clientX;
-  });
+  carouselTrack.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!isMoving) return;
+      const touch = e.touches[0];
+      moveX = touch.clientX;
+      moveY = touch.clientY;
+
+      // Detect if swipe is more horizontal than vertical
+      const diffX = Math.abs(moveX - startX);
+      const diffY = Math.abs(moveY - startY);
+
+      // Only prevent vertical scrolling if swipe is horizontal
+      if (diffX > diffY) {
+        e.preventDefault(); // Stops page scroll during swipe
+      }
+    },
+    { passive: false }
+  );
 
   carouselTrack.addEventListener("touchend", () => {
     if (!isMoving) return;
     const diff = startX - moveX;
-    const threshold = 40; // lower threshold = more sensitive
+    const threshold = 40; // minimum distance for swipe
 
     if (Math.abs(diff) > threshold) {
-      if (diff > 0) {
-        nextSlide(); // swipe left
-      } else {
-        prevSlide(); // swipe right
-      }
+      if (diff > 0) nextSlide(); // swipe left
+      else prevSlide(); // swipe right
     }
+
     isMoving = false;
   });
 }
+
 
 // --- Autoplay every 5s ---
 setInterval(() => {
