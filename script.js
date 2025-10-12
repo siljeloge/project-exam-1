@@ -7,8 +7,9 @@ const BASE_URL = "https://v2.api.noroff.dev/online-shop";
 
 let products = [];
 let currentIndex = 0;
+let isTransitioning = false;
 
-// Fetch all products
+// Fetch products
 async function fetchProducts() {
   try {
     const response = await fetch(BASE_URL);
@@ -28,7 +29,7 @@ async function fetchProducts() {
   }
 }
 
-// Render product grid
+// Render all products grid
 function renderProducts(products) {
   if (!container) return;
   container.innerHTML = "";
@@ -49,15 +50,15 @@ function renderProducts(products) {
     container.appendChild(item);
   });
 
-  container.querySelectorAll(".view-product-btn").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const productId = event.target.getAttribute("data-id");
+  container.querySelectorAll(".view-product-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const productId = e.target.getAttribute("data-id");
       window.location.href = `product.html?id=${productId}`;
     });
   });
 }
 
-// Render latest 3 products in carousel
+// Render latest 3 products into the carousel
 function renderCarousel(products) {
   if (!carouselTrack) return;
 
@@ -76,39 +77,73 @@ function renderCarousel(products) {
         <button>View Product</button>
       </a>
     `;
-
     carouselTrack.appendChild(item);
   });
 
-  updateCarousel();
+  // ✅ Clone first and last items for infinite looping
+  const firstClone = carouselTrack.firstElementChild.cloneNode(true);
+  const lastClone = carouselTrack.lastElementChild.cloneNode(true);
+  carouselTrack.appendChild(firstClone);
+  carouselTrack.insertBefore(lastClone, carouselTrack.firstElementChild);
+
+  currentIndex = 1;
+  updateCarousel(false); // no transition for initial position
 }
 
 // Update carousel position
-function updateCarousel() {
+function updateCarousel(withTransition = true) {
   const items = document.querySelectorAll(".carousel-item");
   const total = items.length;
 
-  if (currentIndex < 0) currentIndex = total - 1;
-  if (currentIndex >= total) currentIndex = 0;
+  if (withTransition) carouselTrack.style.transition = "transform 0.8s ease-in-out";
+  else carouselTrack.style.transition = "none";
 
   const offset = -currentIndex * 100;
   carouselTrack.style.transform = `translateX(${offset}%)`;
 }
 
-// Carousel buttons
-if (prevBtn && nextBtn) {
-  prevBtn.addEventListener("click", () => {
-    currentIndex--;
-    updateCarousel();
-  });
+// Move carousel
+function nextSlide() {
+  if (isTransitioning) return;
+  const items = document.querySelectorAll(".carousel-item");
+  isTransitioning = true;
 
-  nextBtn.addEventListener("click", () => {
-    currentIndex++;
-    updateCarousel();
-  });
+  currentIndex++;
+  updateCarousel();
+
+  carouselTrack.addEventListener("transitionend", () => {
+    if (currentIndex === items.length - 1) {
+      currentIndex = 1;
+      updateCarousel(false);
+    }
+    isTransitioning = false;
+  }, { once: true });
 }
 
-// --- Touch swipe for mobile carousel ---
+function prevSlide() {
+  if (isTransitioning) return;
+  const items = document.querySelectorAll(".carousel-item");
+  isTransitioning = true;
+
+  currentIndex--;
+  updateCarousel();
+
+  carouselTrack.addEventListener("transitionend", () => {
+    if (currentIndex === 0) {
+      currentIndex = items.length - 2;
+      updateCarousel(false);
+    }
+    isTransitioning = false;
+  }, { once: true });
+}
+
+// Buttons
+if (prevBtn && nextBtn) {
+  prevBtn.addEventListener("click", prevSlide);
+  nextBtn.addEventListener("click", nextSlide);
+}
+
+// --- Touch swipe for mobile ---
 if (carouselTrack) {
   let startX = 0;
   let endX = 0;
@@ -123,31 +158,24 @@ if (carouselTrack) {
 
   carouselTrack.addEventListener("touchend", () => {
     const diff = startX - endX;
-    const threshold = 50; // minimum px to trigger swipe
+    const threshold = 50;
 
     if (Math.abs(diff) > threshold) {
-      if (diff > 0) {
-        currentIndex++;
-      } else {
-        currentIndex--;
-      }
-      updateCarousel();
+      if (diff > 0) nextSlide(); // swipe left
+      else prevSlide();          // swipe right
     }
   });
 }
 
-// Optional autoplay
+// --- Autoplay every 5s ---
 setInterval(() => {
-  if (products.length > 0) {
-    currentIndex++;
-    updateCarousel();
-  }
+  if (products.length > 0) nextSlide();
 }, 5000);
 
-// Placeholder for cart updates
+// Placeholder for cart badge
 function updateCartCount() {
   console.log("Cart count updated!");
 }
 
-// Start everything
+// Initialize
 fetchProducts();

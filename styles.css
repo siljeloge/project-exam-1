@@ -119,11 +119,14 @@ hr{
   width: 80%;
   margin: 2rem auto;
   overflow: hidden;
+  touch-action: pan-y;
+  position: relative;
 }
 
 .carousel-track {
   display: flex;
   transition: transform 3s ease-in-out;
+  will-change: transform;
 }
 
 .carousel-slide {
@@ -660,6 +663,7 @@ nav a, .greeting {
     width: 100%;
     margin: 1rem auto;
     overflow: hidden;
+    position: relative;
     touch-action: pan-y; /* Enables horizontal touch gestures */
 }
 
