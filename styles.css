@@ -665,14 +665,12 @@ nav a, .greeting {
     margin: 1rem auto;
     overflow: hidden;
     position: relative;
-    touch-action: pan-y; /* Enables horizontal touch gestures */
 }
 
 .carousel-track {
     display: flex;
-    touch-action: pan-x;
     transition: transform 1.5s ease-in-out;
-    will-change: transform; /* Optimizes performance for animations */
+    will-change: transform; 
 }
 
 .carousel-item{
@@ -685,8 +683,11 @@ nav a, .greeting {
     max-height: 200px;
   }
 
-  .carousel-control.prev, .carousel-control.next {
-    display: none;
+  .carousel-control.prev{
+    left: 20px;
+  }
+  .carousel-control.next {
+    right: 20px;
   }
 
   .product-list {
