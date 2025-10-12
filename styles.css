@@ -655,14 +655,23 @@ nav a, .greeting {
     margin: 0 1rem 20px 1rem;
     text-align: center;
   }
+
 .carousel {
     width: 100%;
     margin: 1rem auto;
+    overflow: hidden;
     touch-action: pan-y; /* Enables horizontal touch gestures */
 }
 
 .carousel-track {
+    display: flex;
     transition: transform 1.5s ease-in-out;
+    will-change: transform; /* Optimizes performance for animations */
+}
+
+.carousel-item{
+    flex: 0 0 100%;
+    text-align: center;
 }
 
   .carousel img{
