@@ -130,7 +130,7 @@ function prevSlide() {
 
   carouselTrack.addEventListener("transitionend", () => {
     if (currentIndex === 0) {
-      currentIndex = items.length - 2;
+      currentIndex = items.length - 2; // ✅ go to last real item
       updateCarousel(false);
     }
     isTransitioning = false;

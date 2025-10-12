@@ -189,8 +189,17 @@ hr{
   border-radius: 50%;
 }
 
-.carousel-control.prev { left: 150px; }
-.carousel-control.next { right: 150px; }
+.carousel-control.prev { 
+    left: 150px; 
+    z-index: 10;
+    cursor: pointer;
+}
+
+.carousel-control.next { 
+    right: 150px;
+    z-index: 10;
+    cursor: pointer;
+}
 
 .product-list{
     display: grid;
@@ -667,19 +676,10 @@ nav a, .greeting {
     position: relative;
 }
 
-.carousel button{
-    margin-top: 20px;
-}
-
 .carousel-track {
     display: flex;
     transition: transform 1.5s ease-in-out;
     will-change: transform; 
-}
-
-.carousel-item{
-    flex: 0 0 100%;
-    text-align: center;
 }
 
   .carousel img{
@@ -689,9 +689,13 @@ nav a, .greeting {
 
   .carousel-control.prev{
     left: 20px;
+    z-index: 10;
+    cursor: pointer;
   }
   .carousel-control.next {
     right: 20px;
+    z-index: 10;
+    cursor: pointer;
   }
 
   .product-list {
