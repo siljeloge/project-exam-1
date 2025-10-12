@@ -655,23 +655,23 @@ nav a, .greeting {
     margin: 0 1rem 20px 1rem;
     text-align: center;
   }
-
-  .carousel {
+.carousel {
     width: 100%;
     margin: 1rem auto;
-  }
+    touch-action: pan-y; /* Enables horizontal touch gestures */
+}
+
+.carousel-track {
+    transition: transform 1.5s ease-in-out;
+}
 
   .carousel img{
     width: 70%;
     max-height: 200px;
   }
 
-  .carousel-control.prev{
-    left: 20px;
-  }
-
-  .carousel-control.next {
-    right: 20px;
+  .carousel-control.prev, .carousel-control.next {
+    display: none;
   }
 
   .product-list {
@@ -803,7 +803,10 @@ nav a, .greeting {
         margin-top: 5px;
     }
     
-
+    .payment-options{
+        flex-direction: column;
+        align-items: center;
+    }
 
 }
 
