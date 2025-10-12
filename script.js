@@ -146,24 +146,32 @@ if (prevBtn && nextBtn) {
 // --- Touch swipe for mobile ---
 if (carouselTrack) {
   let startX = 0;
-  let endX = 0;
+  let moveX = 0;
+  let isMoving = false;
 
   carouselTrack.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
+    isMoving = true;
   });
 
   carouselTrack.addEventListener("touchmove", (e) => {
-    endX = e.touches[0].clientX;
+    if (!isMoving) return;
+    moveX = e.touches[0].clientX;
   });
 
   carouselTrack.addEventListener("touchend", () => {
-    const diff = startX - endX;
-    const threshold = 50;
+    if (!isMoving) return;
+    const diff = startX - moveX;
+    const threshold = 40; // lower threshold = more sensitive
 
     if (Math.abs(diff) > threshold) {
-      if (diff > 0) nextSlide(); // swipe left
-      else prevSlide();          // swipe right
+      if (diff > 0) {
+        nextSlide(); // swipe left
+      } else {
+        prevSlide(); // swipe right
+      }
     }
+    isMoving = false;
   });
 }
 
