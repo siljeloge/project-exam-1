@@ -783,7 +783,7 @@ nav a, .greeting {
 
     .login-form, #register-form, .cart-container, .order-summary, .checkout-form {
         width: 85%;
-        padding: 1rem;
+        padding: 16px;
         margin: 20px auto;
     }
 
@@ -827,10 +827,35 @@ nav a, .greeting {
         margin-top: 5px;
     }
     
-    .payment-options{
-        flex-direction: column;
-        align-items: center;
-    }
+  .payment-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.payment-options label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 0;
+  width: auto;
+}
+
+.payment-options input[type="radio"] {
+  accent-color: #333;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin: 0;
+}
 
 }
 
