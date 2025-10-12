@@ -127,6 +127,7 @@ hr{
   display: flex;
   transition: transform 3s ease-in-out;
   will-change: transform;
+  touch-action: pan-x;
 }
 
 .carousel-slide {
