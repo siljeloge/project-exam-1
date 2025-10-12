@@ -667,6 +667,10 @@ nav a, .greeting {
     position: relative;
 }
 
+.carousel button{
+    margin-top: 20px;
+}
+
 .carousel-track {
     display: flex;
     transition: transform 1.5s ease-in-out;
