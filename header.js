@@ -1,3 +1,5 @@
+console.log("header.js connected");
+
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user") || "{}");

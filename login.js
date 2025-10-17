@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    if (!username || !password) {
-      alert("Please enter both username and password.");
+    if (!email || !password) {
+      alert("Please enter both email and password.");
       return;
     }
 
@@ -20,11 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: username, password }),
+        body: JSON.stringify({ email: email, password }),
       });
 
       if (!response.ok) {
-        throw new Error("Login failed. Check your username and password.");
+        throw new Error("Login failed. Check your email and password.");
       }
 
       const data = await response.json();

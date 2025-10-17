@@ -282,7 +282,7 @@ hr{
         margin-top: 1px;
 }
 
-.product-info h2, h3{
+.product-info h2, .product-info h3{
         font-size: 20px;
         color: #534859;
         font-weight: normal;
@@ -302,19 +302,18 @@ hr{
         color: #534859;
         font-weight: 300;
         display: flex;
-        gap: 0.5rem;
         padding-top: 20px;
         font-style: oblique;
 }
 
 .product-info button {
-    padding: 15px 15px;
+    padding: 10px;
     font-size: 16px;
     font-weight: 500;
     background: #A7A293;
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
     width: fit-content;
     margin-top: 20px;
@@ -326,9 +325,8 @@ hr{
         margin-bottom: 50px;
 }
 
-/* Login.html */
-
-.login-form {
+/* Login.html, register.html, checkout.html and cart.html */
+.login-form, #register-form, .order-summary, .checkout-form {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -339,7 +337,7 @@ hr{
     font-family: "Red Hat Display", sans-serif;
 }
 
-.login-form h1{
+.login-form h1, #register-form h1, .order-summary h2, .checkout-form h2, .cart-container h1 {
     font-size: 40px;
     font-weight: 300;
     letter-spacing: 6px;
@@ -348,33 +346,34 @@ hr{
     margin-bottom: 50px;
 }
 
-.login-form label{
+.login-form label, #register-form label, .checkout-form label{
     display: block;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     text-align: center;
 }
 
-.login-form input{
+.login-form input, #register-form input, .checkout-form input, .checkout-form select{
     width: 60%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 5px;
+    font-size: 18px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.login-form button{
+.login-form button, #register-form button, .checkout-form button{
     width: 30%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     color: #fff;
+    font-weight: 500;
     background-color: #A7A293;
     font-size: 16px;
     display: block;
@@ -390,62 +389,6 @@ hr{
     text-align: center;
 }
 
-/* Register-page */
-#register-form {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #7C786E;
-    border-radius: 8px;
-    color: #534859;
-    background-color: #f0eee7;
-    font-family: "Red Hat Display", sans-serif;
-}
-
-#register-form h1{
-    font-size: 40px;
-    font-weight: 300;
-    letter-spacing: 6px;
-    color: #534859;
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-#register-form label{
-    display: block;
-    margin-bottom: 10px;
-    font-size: 16px;
-    font-weight: 500;
-    text-align: center;
-}
-
-#register-form input{
-    width: 60%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#register-form button{
-    width: 30%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    color: #fff;
-    background-color: #A7A293;
-    font-size: 16px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
 /* Shoppingcart */
 
 .cart-container {
@@ -458,25 +401,18 @@ hr{
     background-color: #f0eee7;
     font-family: "Red Hat Display", sans-serif;
 }
-.cart-container h1{
-    font-size: 40px;
-    font-weight: 300;
-    letter-spacing: 6px;
-    color: #534859;
-    text-align: center;
-    margin-bottom: 50px;
-}
-.cart-container table {
+
+.cart-container table, .order-summary table {
     width: 100%;
     border-collapse: collapse;
 }
-.cart-container th, .cart-container td {
+.cart-container th, .cart-container td, .order-summary th, .order-summary td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
     font-size: 18px;
 }
-.cart-container th {
+.cart-container th, .order-summary th {
     background-color: #A7A293;
     color: white;
 }
@@ -492,127 +428,28 @@ hr{
 }
 
 .cart-container button {
-    padding: 10px 15px;
+    padding: 10px;
     font-size: 16px;
     background: #A7A293;
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
 }
 
 .product-cell p{
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     margin-top: 10px;
 }
 
 /* Checkout */
 
-.order-summary {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #7C786E;
-    border-radius: 8px;
-    color: #534859;
-    background-color: #f0eee7;
-    font-family: "Red Hat Display", sans-serif;
-}
-
-.order-summary h1{
-    font-size: 40px;
-    font-weight: 300;
-    letter-spacing: 6px;
-    color: #534859;
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.order-summary table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.order-summary th, .order-summary td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-    font-size: 18px;
-}
-
-.order-summary th {
-    background-color: #A7A293;
-    color: white;
-}
-
 .order-summary h3{
-    font-size: 30px;
+    font-size: 24px;
     text-align: left;
     margin-top: 20px;
-}
-
-.checkout-form {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #7C786E;
-    border-radius: 8px;
-    color: #534859;
-    letter-spacing: 2px;
-    background-color: #f0eee7;
-    font-family: "Red Hat Display", sans-serif;
-}
-
-.checkout-form h1{
-    font-size: 40px;
-    font-weight: 300;
-    color: #534859;
-    text-align: center;
-    margin-bottom: 50px;
-}
-.checkout-form label{
-    display: block;
-    margin-bottom: 10px;
-    font-size: 16px;
-    font-weight: 300;
-    text-align: center;
-}
-
-.checkout-form h2{
-    font-size: 24px;
-    font-weight: 300;
-    color: #534859;
-    text-align: center;
-    margin-bottom: 50px;
-    margin-top: 50px;
-}
-
-.checkout-form input, .checkout-form select{
-    width: 60%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.checkout-form button{
-    width: 30%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    color: #fff;
-    background-color: #A7A293;
-    font-size: 16px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .payment-options input[type="radio"] {
@@ -621,10 +458,9 @@ hr{
   height: 18px;
 }
 
-
-
 /* Small mobile (portrait) */
 @media (max-width: 600px) {
+
   body {
     width: 100%;
     overflow-x: hidden;
@@ -662,14 +498,14 @@ nav a, .greeting {
   height: 25px;
 }
 
-  h1 {
+h1 {
     font-size: 32px;
     letter-spacing: 6px;
     text-align: center;
     padding: 0 1rem;
   }
 
-  h4 {
+h4 {
     font-size: 16px;
     margin: 0 1rem 20px 1rem;
     text-align: center;
@@ -777,7 +613,7 @@ nav a, .greeting {
         text-align: center;
     }
 
-    .product-info h2, h3 {
+    .product-info h2, .product-info h3 {
         font-size: 18px;
         margin: 0.5rem 0;
     }
@@ -793,13 +629,13 @@ nav a, .greeting {
         margin: 20px auto;
     }
 
-    .login-form h1, #register-form h1, .cart-container h1, .order-summary h1, .checkout-form h1 {
+    .login-form h1, #register-form h1, .cart-container h1, .order-summary h2, .checkout-form h2 {
         font-size: 28px;
         letter-spacing: 3px;
         margin-bottom: 20px;
     }
 
-    #cart-table th{
+    #cart-table th, .order-summary th {
         font-size: 14px;
         font-weight: 400;
     }
@@ -833,40 +669,44 @@ nav a, .greeting {
         margin-top: 5px;
     }
     
-  .payment-options {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center;
-  margin-top: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center;
-}
+    .payment-options {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center;
+        margin-top: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
 
-.payment-options label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 8px 0;
-  width: auto;
-}
+    .payment-options label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 8px 0;
+        width: auto;
+    }
 
-.payment-options input[type="radio"] {
-  accent-color: #333;
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  margin: 0;
-}
+    .payment-options input[type="radio"] {
+        accent-color: #333;
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        margin: 0;
+    }
 }
 
 
 /* Large mobile (landscape) */
 @media only screen and (min-width: 600px) and (max-width: 768px) { 
+
+    html, body {
+    overflow-x: hidden;
+}
 
     nav a, .greeting {
         display: inline-block;
@@ -882,6 +722,7 @@ nav a, .greeting {
 
     h4{
         margin: 0 30px 30px 30px;
+        font-size: 20px;
     }
 
     .carousel img{
@@ -897,8 +738,9 @@ nav a, .greeting {
         right: 20px;
     }
 
-    .allproducts h1 {
+    .allproducts h1, .carousel {
         margin-bottom: 30px;
+        font-size: 30px;
     }
 
     .product-list {
@@ -912,20 +754,20 @@ nav a, .greeting {
   }
 
   .product-list h2, .product-list p{
-    max-width: 260px;
+    max-width: 250px;
   }
 
   .product-list img {
     width: 100%;
-    max-width: 260px;
-    height: 260px;
+    max-width: 250px;
+    height: 250px;
     object-fit: cover;
     border-radius: 12px;
   }
 
   .product-list button{
     width: 100%;
-    max-width: 260px;
+    max-width: 250px;
     margin-bottom: 50px;
     margin-top: 5px;
   }
@@ -956,7 +798,7 @@ nav a, .greeting {
         text-align: center;
     }
 
-    .product-info h2, h3 {
+    .product-info h2, .product-info h3 {
         font-size: 20px;
         margin: 0.5rem 0;
     }
@@ -971,19 +813,19 @@ nav a, .greeting {
     width: 170px;
   }
 
-  .login-form, #register-form, .cart-container, .order-summary, .checkout-form {
+    .login-form, #register-form, .cart-container, .order-summary, .checkout-form {
         width: 85%;
         padding: 20px;
         margin: 30px auto;
     }
 
-    .login-form h1, #register-form h1, .cart-container h1, .order-summary h1, .checkout-form h1 {
+    .login-form h1, #register-form h1, .cart-container h1, .order-summary h2, .checkout-form h2{
         font-size: 42px;
         letter-spacing: 4px;
         margin-bottom: 30px;
     }
 
-    #cart-table th{
+    #cart-table th, .order-summary th {
         font-size: 20px;
         font-weight: 400;
     }
@@ -996,7 +838,7 @@ nav a, .greeting {
         padding: 5px;
     }
 
-    #cart-table td {
+    #cart-table td, .order-summary td {
         font-size: 20px;
     }
 
@@ -1037,16 +879,184 @@ nav a, .greeting {
         font-size: 20px;
         width: 40%;
         padding: 12px;
-    }
-    
-
+    }   
+}
 
 /* Tablets */
-@media (min-width: 768px) and (max-width: 1024px){
+@media (min-width: 769px) and (max-width: 1024px){
 
+    html, body {
+    overflow-x: hidden;
+}
+
+    h4{
+        margin: 0 60px 60px 60px;
+        font-size: 24px;
+    }
+
+    .carousel img{
+        width: 80%;
+        max-height: 300px;
+    }
+
+    .carousel-control.prev{
+        left: 30px;
+    }
+
+    .carousel-control.next {
+        right: 30px;
+    }
+
+    .allproducts h1 {
+        margin-bottom: 30px;
+    }
+
+    hr{
+        margin: 30px 60px;
+    }
+
+    .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    gap: 20px;
+    width: 100%;
+    }
+
+  .product-list img {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .product-list button{
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 50px;
+    margin-top: 5px;
+  }
+
+  .product-page{
+        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-page img {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .product-info {
+        align-items: center;
+        text-align: center;
+        padding: 0 1rem;
+        max-width: 500px;
+    }
+
+    .product-info h1 {
+        font-size: 36px;
+        letter-spacing: 5px;
+        text-align: center;
+    }
+
+    .product-info h2, .product-info h3 {
+        font-size: 22px;
+        margin: 0.5rem 0;
+    }
+
+    .product-info h4, h5, p, .tags {
+        font-size: 18px;
+        margin: 0.3rem 0;
+  }
+
+    .product-page button{
+        font-size: 18px;
+        width: 200px;
+    }
+
+  .login-form, #register-form, .cart-container, .order-summary, .checkout-form {
+        width: 85%;
+        padding: 20px;
+        margin: 30px auto;
+    }
+
+    .login-form h1, #register-form h1, .cart-container h1, .order-summary h1, .checkout-form h1 {
+        font-size: 42px;
+        letter-spacing: 4px;
+        margin-bottom: 30px;
+    }
+
+    #cart-table th, .order-summary th, #cart-table td, .order-summary td {
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    .checkout-form label, .payment-options label{
+        font-size: 22px;
+    }
+
+    .order-summary, .checkout-form label, .payment-options label{
+        font-size: 22px;
+    }
+
+    .cart-summary button{
+        font-size: 22px;
+        padding: 14px 24px;
+    } 
+
+    .product-cell p {
+        font-size: 22px;
+        font-weight: 500;
+        margin-top: 10px;
+    }
+
+    #cart-table button {
+        font-size: 22px;
+        padding: 10px 20px;
+    }
 }
 
 /* Large screens */
 @media (min-width: 1025px) and (max-width: 1273px){
+    
 
+    .allproducts h1 {
+        margin-bottom: 30px;
+    }
+
+    .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .product-list h2, .product-list p{
+    max-width: 300px;
+  }
+
+  .product-list img {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .product-list button{
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 50px;
+    margin-top: 5px;
+  }
 }

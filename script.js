@@ -1,3 +1,5 @@
+console.log("script.js connected");
+
 const container = document.querySelector(".product-list");
 const carouselTrack = document.querySelector(".carousel-track");
 const prevBtn = document.querySelector(".carousel-control.prev");
