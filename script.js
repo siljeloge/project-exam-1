@@ -1,4 +1,5 @@
-console.log("script.js connected");
+// script.js
+console.log("Main script loaded");
 
 const container = document.querySelector(".product-list");
 const carouselTrack = document.querySelector(".carousel-track");
@@ -11,11 +12,11 @@ let products = [];
 let currentIndex = 0;
 let isTransitioning = false;
 
-// Fetch products
+// Fetch all products from the API
 async function fetchProducts() {
   try {
     const response = await fetch(BASE_URL);
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 
     const data = await response.json();
     products = data.data;
@@ -31,7 +32,7 @@ async function fetchProducts() {
   }
 }
 
-// Render all products grid
+// Show all products in a grid
 function renderProducts(products) {
   if (!container) return;
   container.innerHTML = "";
@@ -42,25 +43,26 @@ function renderProducts(products) {
 
     item.innerHTML = `
       <a href="product.html?id=${product.id}">
-        <img src="${product.image?.url}" alt="${product.title}" />
+        <img src="${product.image?.url}" alt="${product.title}">
       </a>
       <h2>${product.title}</h2>
       <p><strong>${product.price} NOK</strong></p>
-      <button class="view-product-btn" data-id="${product.id}">View product</button>
+      <button class="view-product-btn" data-id="${product.id}">View Product</button>
     `;
 
     container.appendChild(item);
   });
 
+  // Go to product detail page when button is clicked
   container.querySelectorAll(".view-product-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      const productId = e.target.getAttribute("data-id");
+      const productId = e.target.dataset.id;
       window.location.href = `product.html?id=${productId}`;
     });
   });
 }
 
-// Render latest 3 products into the carousel
+// Show latest 3 products in the carousel
 function renderCarousel(products) {
   if (!carouselTrack) return;
 
@@ -82,29 +84,30 @@ function renderCarousel(products) {
     carouselTrack.appendChild(item);
   });
 
-  // ✅ Clone first and last items for infinite looping
+  // Clone first and last slides for smooth infinite loop
   const firstClone = carouselTrack.firstElementChild.cloneNode(true);
   const lastClone = carouselTrack.lastElementChild.cloneNode(true);
   carouselTrack.appendChild(firstClone);
   carouselTrack.insertBefore(lastClone, carouselTrack.firstElementChild);
 
   currentIndex = 1;
-  updateCarousel(false); // no transition for initial position
+  updateCarousel(false); // jump to first real slide
 }
 
 // Update carousel position
 function updateCarousel(withTransition = true) {
   const items = document.querySelectorAll(".carousel-item");
-  const total = items.length;
+  if (!items.length) return;
 
-  if (withTransition) carouselTrack.style.transition = "transform 0.8s ease-in-out";
-  else carouselTrack.style.transition = "none";
+  carouselTrack.style.transition = withTransition
+    ? "transform 0.8s ease-in-out"
+    : "none";
 
   const offset = -currentIndex * 100;
   carouselTrack.style.transform = `translateX(${offset}%)`;
 }
 
-// Move carousel
+// Next and previous carousel slides
 function nextSlide() {
   if (isTransitioning) return;
   const items = document.querySelectorAll(".carousel-item");
@@ -132,28 +135,28 @@ function prevSlide() {
 
   carouselTrack.addEventListener("transitionend", () => {
     if (currentIndex === 0) {
-      currentIndex = items.length - 2; // ✅ go to last real item
+      currentIndex = items.length - 2;
       updateCarousel(false);
     }
     isTransitioning = false;
   }, { once: true });
 }
 
-// Buttons
+// Carousel button controls
 if (prevBtn && nextBtn) {
   prevBtn.addEventListener("click", prevSlide);
   nextBtn.addEventListener("click", nextSlide);
 }
 
-// --- Autoplay every 5s ---
+// Auto-slide every 5 seconds
 setInterval(() => {
   if (products.length > 0) nextSlide();
 }, 5000);
 
-// Placeholder for cart badge
+// Placeholder for cart badge (updates handled elsewhere)
 function updateCartCount() {
-  console.log("Cart count updated!");
+  console.log("Cart count updated");
 }
 
-// Initialize
+// Initialize page
 fetchProducts();

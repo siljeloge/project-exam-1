@@ -13,6 +13,8 @@ header {
 body {
     margin: 0%;
     min-height: 10vh;
+    font-family: "Red Hat Display", sans-serif;
+    color: #534859;
 }
 
 #headerlogo {
@@ -56,14 +58,6 @@ nav a, .greeting {
   text-align: center;
 }
 
-nav li .active {
-    text-decoration: underline;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 .cart-link img {
     width: 35px;
     height: 35px;
@@ -80,21 +74,21 @@ footer{
     font-family: "Red Hat Display", sans-serif;
 }
 
+button:hover, a:hover {
+  text-decoration: underline;
+}
+
 h1{
-    font-family: "Red Hat Display", sans-serif;
     font-weight: 100;
     letter-spacing: 20px;
     font-size: 70px;
-    color: #534859;
     text-align: center;
 }
 
 h4{
-    font-family: "Red Hat Display", sans-serif;
     font-weight: 300;
     font-size: 22px;
     letter-spacing: 2px;
-    color: #534859;
     text-align: center;
     margin: 0 200px 50px 200px;
 }
@@ -106,60 +100,54 @@ hr{
 }
 
 .carousel h1, .allproducts h1{
-    font-family: "Red Hat Display", sans-serif;
     font-size: 30px;
     letter-spacing: 2px;
-    color: #534859;
     text-align: center;
     margin-bottom: 50px;
 }
 
 .carousel {
-  position: relative;
-  width: 80%;
-  margin: 2rem auto;
-  overflow: hidden;
-  touch-action: pan-y;
-  position: relative;
+    position: relative;
+    width: 80%;
+    margin: 2rem auto;
+    overflow: hidden;
+    touch-action: pan-y;
+    position: relative;
 }
 
 .carousel-track {
-  display: flex;
-  transition: transform 3s ease-in-out;
-  will-change: transform;
-  touch-action: pan-x;
+    display: flex;
+    transition: transform 3s ease-in-out;
+    will-change: transform;
+    touch-action: pan-x;
 }
 
 .carousel-slide {
-  min-width: 100%;
+    min-width: 100%;
 }
 
 .carousel-item {
-  min-width: 100%;
-  box-sizing: border-box;
-  text-align: center;
-  padding: 1rem;
+    min-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 1rem;
 }
 
 .carousel-item img {
-  width: 50%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 12px;
+    width: 50%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
 .carousel h3 {
-  font-family: "Red Hat Display", sans-serif;
-  font-weight: 400;
-  font-size: 26px;
-  color: #534859;
-  margin: 20px;
+    font-weight: 400;
+    font-size: 26px;
+    margin: 20px;
 }
 
 .carousel p {
-  font-family: "Red Hat Display", sans-serif;
-  font-size: 20px;
-  color: #534859;
+    font-size: 20px;
 }
 
 .carousel button {
@@ -176,17 +164,17 @@ hr{
 }
 
 .carousel-control {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: white;
-  background-color: #534859;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  font-size: 1.5rem;
-  border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    background-color: #534859;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 50%;
 }
 
 .carousel-control.prev { 
@@ -201,10 +189,14 @@ hr{
     cursor: pointer;
 }
 
-.product-list{
+.product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    padding: 170px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    box-sizing: border-box;
 }
 
 .product-list img {
@@ -214,24 +206,16 @@ hr{
     border-radius: 12px;
 }
 
-.allproducts h1{
-    margin-bottom: -100px;
-}
-
 .product-list h2{
-    font-family: "Red Hat Display", sans-serif;
     font-weight: 300;
     font-size: 26px;
-    color: #534859;
     text-align: center;
     max-width: 320px;
 }
 
 .product-list p{
-    font-family: "Red Hat Display", sans-serif;
     font-weight: 100;
     font-size: 18px;
-    color: #534859;
     width: 320px;
     text-align: center;
 }
@@ -271,39 +255,36 @@ hr{
     flex-direction: column;
     justify-content: center;
     font-family: "Red Hat Display", sans-serif;
+    color: #534859;
 }
 
 .product-info h1{
-        font-size: 34px;
-        letter-spacing: normal;
-        font-weight: 300;
-        color: #534859;
-        text-align: start;
-        margin-top: 1px;
+    font-size: 34px;
+    letter-spacing: normal;
+    font-weight: 300;
+    text-align: start;
+    margin-top: 1px;
 }
 
 .product-info h2, .product-info h3{
-        font-size: 20px;
-        color: #534859;
-        font-weight: normal;
-        margin-top: -10px;
-        margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: normal;
+    margin-top: -10px;
+    margin-bottom: 30px;
 }
 
 .product-info h4, h5, p, .tags, .rating, .discount {
-        font-size: 16px;
-        font-weight: 300;
-        margin-top: -5px;
-        color: #534859;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: -5px;
 }
 
 .product-info .reviews {
-        font-size: 16px;
-        color: #534859;
-        font-weight: 300;
-        display: flex;
-        padding-top: 20px;
-        font-style: oblique;
+    font-size: 16px;
+    font-weight: 300;
+    display: flex;
+    padding-top: 20px;
+    font-style: oblique;
 }
 
 .product-info button {
@@ -321,8 +302,8 @@ hr{
 }
 
 .button-container {
-        display: inline;
-        margin-bottom: 50px;
+    display: inline;
+    margin-bottom: 50px;
 }
 
 /* Login.html, register.html, checkout.html and cart.html */
@@ -332,16 +313,14 @@ hr{
     padding: 20px;
     border: 1px solid #7C786E;
     border-radius: 8px;
-    color: #534859;
     background-color: #f0eee7;
-    font-family: "Red Hat Display", sans-serif;
+    
 }
 
 .login-form h1, #register-form h1, .order-summary h2, .checkout-form h2, .cart-container h1 {
     font-size: 40px;
     font-weight: 300;
     letter-spacing: 6px;
-    color: #534859;
     text-align: center;
     margin-bottom: 50px;
 }
@@ -389,7 +368,7 @@ hr{
     text-align: center;
 }
 
-/* Shoppingcart */
+/* Cart */
 
 .cart-container {
     max-width: 800px;
@@ -397,9 +376,7 @@ hr{
     padding: 20px;
     border: 1px solid #7C786E;
     border-radius: 8px;
-    color: #534859;
     background-color: #f0eee7;
-    font-family: "Red Hat Display", sans-serif;
 }
 
 .cart-container table, .order-summary table {
@@ -456,6 +433,43 @@ hr{
   accent-color: #333;
   width: 18px;
   height: 18px;
+}
+
+/* Success-page */
+
+.success-section{
+    text-align: center;
+    margin: 100px auto;
+    
+}
+
+.success-section h1{
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+}
+
+.success-section p{
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.success-section .continue-shopping-btn, .success-section .log-out-btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: #A7A293;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.success-section a:hover{
+    text-decoration: underline;
 }
 
 /* Small mobile (portrait) */
@@ -629,7 +643,7 @@ h4 {
         margin: 20px auto;
     }
 
-    .login-form h1, #register-form h1, .cart-container h1, .order-summary h2, .checkout-form h2 {
+    .login-form h1, .success-section h1, #register-form h1, .cart-container h1, .order-summary h2, .checkout-form h2 {
         font-size: 28px;
         letter-spacing: 3px;
         margin-bottom: 20px;
@@ -698,15 +712,27 @@ h4 {
         flex-shrink: 0;
         margin: 0;
     }
-}
 
+    .success-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .success-section p{
+        font-size: 18px;
+        margin: 30px;
+    }
+
+    .success-section .continue-shopping-btn, .success-section .log-out-btn {
+        font-size: 16px;
+    }
+}
 
 /* Large mobile (landscape) */
 @media only screen and (min-width: 600px) and (max-width: 768px) { 
 
-    html, body {
-    overflow-x: hidden;
-}
+    
 
     nav a, .greeting {
         display: inline-block;
@@ -825,8 +851,6 @@ h4 {
         margin-bottom: 30px;
     }
 
-    
-
     #cart-table img {
         width: 100px;
         height: 100px;
@@ -835,7 +859,6 @@ h4 {
         padding: 5px;
     }
 
-   
     .product-cell p {
         font-size: 20px;
         font-weight: 500;
@@ -950,7 +973,7 @@ h4 {
     .product-info h4, h5, p, .tags {
         font-size: 18px;
         margin: 0.3rem 0;
-  }
+    }
 
     .product-page button{
         font-size: 18px;
@@ -968,18 +991,12 @@ h4 {
         letter-spacing: 4px;
         margin-bottom: 30px;
     }
-    
 }
 
 /* Large screens */
 @media (min-width: 1025px) and (max-width: 1273px){
-    
 
-    .allproducts h1 {
-        margin-bottom: 30px;
-    }
-
-    .product-list {
+.product-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -987,19 +1004,19 @@ h4 {
     padding: 10px;
     gap: 20px;
     width: 100%;
-  }
+}
 
-  .product-list h2, .product-list p{
+.product-list h2, .product-list p{
     max-width: 300px;
-  }
+}
 
-  .product-list img {
+.product-list img {
     width: 100%;
     max-width: 300px;
     height: 300px;
     object-fit: cover;
     border-radius: 12px;
-  }
+}
 
   .product-list button{
     width: 100%;

@@ -1,27 +1,29 @@
+// product.js
+console.log("Product script loaded");
+
 const detailContainer = document.querySelector(".product-detail");
 const BASE_URL = "https://v2.api.noroff.dev/online-shop";
 
-// Get the ID from the URL
+// Get product ID from the URL
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
-// ✅ Update the cart count badge
+// Update cart number in header
 function updateCartCount() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   const countEl = document.getElementById("cart-count");
-  if (!countEl) return; // In case header is missing on this page
+  if (!countEl) return;
 
   let totalItems = 0;
   cart.forEach(item => totalItems += item.quantity);
   countEl.textContent = totalItems;
 }
 
+// Fetch single product by ID
 async function fetchProduct(id) {
   try {
     const response = await fetch(`${BASE_URL}/${id}`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 
     const data = await response.json();
     renderProduct(data.data);
@@ -31,34 +33,35 @@ async function fetchProduct(id) {
   }
 }
 
+// Display product details
 function renderProduct(product) {
   if (!detailContainer) return;
 
   const discountedPrice = product.discountedPrice
     ? `<p><strong>Discounted Price: ${product.discountedPrice} NOK</strong></p>`
-    : '';
+    : "";
+
+  const rating = product.rating
+    ? `<p>Rating: ${product.rating} / 5</p>`
+    : `<p>Rating: None</p>`;
+
+  const tags = product.tags?.length
+    ? product.tags.map(tag => `<span class="tag">${tag}</span>`).join(" ")
+    : `<p>No tags available.</p>`;
 
   const reviews = product.reviews?.length
     ? product.reviews.map(review => `
         <li>
-          <strong>${review.username || "Anonymous"}</strong>: 
+          <strong>${review.username || "Anonymous"}</strong>:
           ${review.description || "No text"} 
           ${review.rating ? `(⭐ ${review.rating})` : ""}
         </li>
-      `).join('')
-    : '<p>No reviews available.</p>';
-
-  const rating = product.rating
-    ? `<p>Rating: ${product.rating} / 5</p>`
-    : '<p>Rating: None</p>';
-
-  const tags = product.tags?.length
-    ? product.tags.map(tag => `<span class="tag">${tag}</span>`).join(' ')
-    : '<p>No tags available.</p>';
+      `).join("")
+    : `<p>No reviews available.</p>`;
 
   detailContainer.innerHTML = `
     <div class="product-page">
-      <img src="${product.image?.url}" alt="${product.title}" />
+      <img src="${product.image?.url}" alt="${product.title}">
       <div class="product-info">
         <h1>${product.title}</h1>
         <h2>${product.description}</h2>
@@ -75,7 +78,7 @@ function renderProduct(product) {
     </div>
   `;
 
-  // ✅ Hook up share button
+  // Share product link
   const shareBtn = document.getElementById("share-btn");
   if (shareBtn && productId) {
     shareBtn.addEventListener("click", () => {
@@ -86,24 +89,23 @@ function renderProduct(product) {
     });
   }
 
-  // ✅ Add-to-cart logic with badge update
+  // Add to cart
   const addToCartBtn = document.getElementById("add-to-cart");
   if (addToCartBtn) {
     addToCartBtn.addEventListener("click", () => {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        alert("You must log in to add products to the cart.");
+        alert("You must be logged in to add products to the cart.");
         window.location.href = "login.html";
         return;
       }
 
-      // ✅ Add product to localStorage cart
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       const existingItem = cart.find(item => item.id === product.id);
 
       if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity++;
       } else {
         cart.push({
           id: product.id,
@@ -115,16 +117,16 @@ function renderProduct(product) {
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
-      updateCartCount(); // ✅ Update the badge immediately
+      updateCartCount();
       alert(`${product.title} added to cart!`);
     });
   }
 }
 
-// Fetch product when page loads
+// Load product on page load
 if (productId) {
   fetchProduct(productId);
-  updateCartCount(); // ✅ Show the correct count when the page loads
+  updateCartCount();
 } else {
   detailContainer.innerHTML = `<p>Invalid product ID</p>`;
 }

@@ -1,32 +1,41 @@
-console.log("header.js connected");
+// header.js
+console.log("Header script loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
+  // --- Get user info ---
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user") || "{}");
 
-  // Elements already in your HTML
+  // --- Grab header elements ---
   const cartLink = document.querySelector(".cart-link");
   const loginLink = document.querySelector("a.login-link");
   const registerLink = document.querySelector("a.register-link");
   const navUl = document.querySelector("nav ul");
 
-  // --- 🧩 Greeting setup ---
+  // --- Add a greeting if it doesn’t exist ---
   let greetingEl = document.querySelector(".greeting");
   if (!greetingEl) {
     greetingEl = document.createElement("li");
-    greetingEl.className = "greeting";
-    navUl.insertBefore(greetingEl, loginLink?.parentElement || null);
+    greetingEl.classList.add("greeting");
+    // Put it before the login link in the nav
+    if (loginLink) {
+      navUl.insertBefore(greetingEl, loginLink.parentElement);
+    } else {
+      navUl.appendChild(greetingEl);
+    }
   }
 
-  // --- 🛒 Cart count badge setup ---
+  // --- Cart badge setup ---
   let cartCountEl = document.getElementById("cart-count");
   if (!cartCountEl && cartLink) {
     cartCountEl = document.createElement("span");
     cartCountEl.id = "cart-count";
     cartCountEl.className = "cart-count";
+    cartCountEl.textContent = "0";
     cartLink.appendChild(cartCountEl);
   }
 
+  // Function to update the little cart number
   function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const totalItems = cart.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
@@ -35,9 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // --- 👤 User state management ---
+  // --- Logged-in vs logged-out state ---
   if (token && user?.name) {
-    // ✅ Logged-in state
+    // If user is logged in
     greetingEl.textContent = `Hello, ${user.name}`;
 
     if (loginLink) {
@@ -45,22 +54,26 @@ document.addEventListener("DOMContentLoaded", () => {
       loginLink.classList.add("logout-link");
       loginLink.href = "#";
 
-      // ✅ Logout logic — clears token, user, and cart
+      // When clicking logout, clear data and redirect
       loginLink.addEventListener("click", (e) => {
         e.preventDefault();
+
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        localStorage.removeItem("cart"); // 🧹 clear cart
-        updateCartCount(); // show 0 immediately
+        localStorage.removeItem("cart"); // clear cart too
+        updateCartCount();
 
-        alert("You have been logged out, and your cart has been cleared.");
+        alert("You’ve been logged out.");
         window.location.href = "index.html";
       });
     }
 
-    if (registerLink) registerLink.style.display = "none";
+    // Hide register if logged in
+    if (registerLink) {
+      registerLink.style.display = "none";
+    }
   } else {
-    // ❌ Logged-out state
+    // If user is logged out
     greetingEl.textContent = "";
 
     if (loginLink) {
@@ -69,10 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
       loginLink.classList.remove("logout-link");
     }
 
-    if (registerLink) registerLink.style.display = "";
-    updateCartCount(); // ensure it shows 0 for logged-out users
+    if (registerLink) {
+      registerLink.style.display = "";
+    }
+
+    updateCartCount();
   }
 
-  // 🔄 Always update cart count on page load
+  // Update cart badge right away when page loads
   updateCartCount();
 });

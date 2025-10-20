@@ -1,77 +1,74 @@
-console.log("cart script loaded");
+// cart.js
+console.log("Cart script loaded");
 
-// ✅ Protect cart and checkout pages (require login)
-const onProtectedPage = /\/(cart\.html|checkout\.html)$/i.test(window.location.pathname);
+// --- Check login before showing cart or checkout ---
+const currentPath = window.location.pathname;
+const onProtectedPage = /\/(cart\.html|checkout\.html)$/i.test(currentPath);
 const token = localStorage.getItem("token");
-if (!token && onProtectedPage) {
+
+if (onProtectedPage && !token) {
   alert("You must be logged in to view this page.");
   window.location.href = "login.html";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Load and validate cart ---
+  // --- Get cart from localStorage ---
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   if (!Array.isArray(cart)) {
     cart = [];
     localStorage.removeItem("cart");
   }
 
-  // Elements (may or may not exist depending on page)
-  const cartTableBody  = document.querySelector("#cart-table tbody");
-  const totalPriceEl   = document.getElementById("total-price");
-  const clearCartBtn   = document.getElementById("clear-cart");
-  const checkoutBtn    = document.getElementById("checkout-btn");
+  // Page elements
+  const cartTableBody = document.querySelector("#cart-table tbody");
+  const totalPriceEl = document.getElementById("total-price");
+  const clearCartBtn = document.getElementById("clear-cart");
+  const checkoutBtn = document.getElementById("checkout-btn");
 
-  // Checkout elements
-  const orderTableBody  = document.querySelector("#order-table tbody");
+  // Checkout page elements
+  const orderTableBody = document.querySelector("#order-table tbody");
   const checkoutTotalEl = document.getElementById("checkout-total");
-  const checkoutForm    = document.getElementById("checkout-form");
+  const checkoutForm = document.getElementById("checkout-form");
 
-  // --- Badge helpers ---
-  function ensureCartCountEl() {
-    let el = document.getElementById("cart-count");
-    if (!el) {
+  // --- Cart count (badge) ---
+  function ensureCartBadge() {
+    let badge = document.getElementById("cart-count");
+    if (!badge) {
       const link = document.querySelector(".cart-link");
       if (link) {
-        el = document.createElement("span");
-        el.id = "cart-count";
-        el.className = "cart-count";
-        el.textContent = "0";
-        link.appendChild(el);
+        badge = document.createElement("span");
+        badge.id = "cart-count";
+        badge.className = "cart-count";
+        badge.textContent = "0";
+        link.appendChild(badge);
       }
     }
-    return el;
+    return badge;
   }
 
-  // ✅ Fixed version — prevents NaN
   function updateCartCount() {
-    const el = ensureCartCountEl();
-    if (!el) return;
+    const badge = ensureCartBadge();
+    if (!badge) return;
 
-    let totalItems = 0;
     try {
-      const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-      if (Array.isArray(savedCart)) {
-        totalItems = savedCart.reduce((sum, item) => {
-          const qty = Number(item.quantity);
-          return sum + (isNaN(qty) ? 0 : qty);
-        }, 0);
-      }
+      const saved = JSON.parse(localStorage.getItem("cart")) || [];
+      const totalItems = saved.reduce((sum, item) => {
+        const qty = Number(item.quantity);
+        return sum + (isNaN(qty) ? 0 : qty);
+      }, 0);
+      badge.textContent = totalItems;
     } catch (err) {
-      console.warn("Cart data invalid, resetting:", err);
+      console.warn("Cart data invalid:", err);
       localStorage.removeItem("cart");
+      badge.textContent = "0";
     }
-
-    el.textContent = totalItems;
   }
 
-  // --------------------------
-  // CART PAGE FUNCTIONS
-  // --------------------------
+  // --- CART PAGE ---
   function renderCart() {
-    if (!cartTableBody) { 
-      updateCartCount(); 
-      return; 
+    if (!cartTableBody) {
+      updateCartCount();
+      return;
     }
 
     cartTableBody.innerHTML = "";
@@ -112,14 +109,16 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
   }
 
-  // Quantity change & remove
+  // Quantity & remove buttons
   if (cartTableBody) {
     cartTableBody.addEventListener("click", (e) => {
       if (e.target.classList.contains("qty-btn")) {
         const index = e.target.dataset.index;
         const action = e.target.dataset.action;
+
         if (action === "increase") cart[index].quantity++;
         if (action === "decrease" && cart[index].quantity > 1) cart[index].quantity--;
+
         localStorage.setItem("cart", JSON.stringify(cart));
         renderCart();
       }
@@ -133,10 +132,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Clear cart
+  // Clear entire cart
   if (clearCartBtn) {
     clearCartBtn.addEventListener("click", () => {
-      if (confirm("Clear the cart?")) {
+      if (confirm("Are you sure you want to clear your cart?")) {
         cart = [];
         localStorage.removeItem("cart");
         renderCart();
@@ -144,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Proceed to checkout
+  // Go to checkout
   if (checkoutBtn) {
     checkoutBtn.addEventListener("click", () => {
       if (cart.length === 0) {
@@ -155,13 +154,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --------------------------
-  // CHECKOUT PAGE FUNCTIONS
-  // --------------------------
+  // --- CHECKOUT PAGE ---
   function renderOrderSummary() {
-    if (!orderTableBody) { 
-      updateCartCount(); 
-      return; 
+    if (!orderTableBody) {
+      updateCartCount();
+      return;
     }
 
     orderTableBody.innerHTML = "";
@@ -174,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    cart.forEach(item => {
+    cart.forEach((item) => {
       const subtotal = (Number(item.price) || 0) * (Number(item.quantity) || 0);
       total += subtotal;
 
@@ -191,9 +188,10 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
   }
 
-  // Checkout form submit
+  // Handle checkout submit
   if (checkoutForm) {
     renderOrderSummary();
+
     checkoutForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
@@ -211,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.getElementById("card").value.trim();
 
       if (!name || !email || !address || !postal || !city) {
-        alert("Please fill in all delivery address fields.");
+        alert("Please fill in all delivery fields.");
         return;
       }
 
@@ -220,16 +218,31 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      alert(`Thank you, ${name}! Your order has been placed using ${paymentMethod.toUpperCase()}.`);
+      alert(`Thanks, ${name}! Your order was placed using ${paymentMethod.toUpperCase()}.`);
       localStorage.removeItem("cart");
       cart = [];
       updateCartCount();
-      window.location.href = "index.html";
+      window.location.href = "success.html";
     });
   }
 
-  // --- Initial render ---
+  // Initial render
   renderCart();
   renderOrderSummary();
   updateCartCount();
 });
+
+// --- Logout button (for success page) ---
+const logoutBtn = document.querySelector(".log-out-btn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!confirm("Are you sure you want to log out?")) return;
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("loggedInUser");
+    sessionStorage.clear();
+
+    window.location.href = "login.html";
+  });
+}
