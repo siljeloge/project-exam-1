@@ -2,64 +2,84 @@
 
 <img width="85" height="85" alt="nl_logo" src="https://github.com/user-attachments/assets/08f4f358-7168-4d5f-b386-bde4d5e51f46" />
 
+# Nordic Loft
 
-This is my project-exam for the first semester in Frontend-developing at Noroff.
-For my first semester project, I was to design and make an e-commerce webshop where I could chose design, name and style.
+Nordic Loft is an e-commerce website created for my first project exam during my Frontend Development studies at Noroff.
 
-<h1>Description</h1>
-This was my first exam. The assignment was to come create an e-commerce website. I had to come up with the design and, as well as code it with HTML, CSS and JavaScript. I named it "Nordic Loft" and choose mild colors and fonts for a clean and organized style.
-The page includes:
+The goal of the project was to design and develop a complete online store using HTML, CSS and JavaScript. I created the visual design in Figma and developed the website from scratch.
 
-- Informative index.html thumbnails
-  
-- Fetched API for each product
-  
-- login and signup function
+🌐 **Live site:** https://siljeloge.github.io/project-exam-1/
 
-- checkout-form
+## About the Project
 
-- add to cart-function
-  
+For this project, I created an online store called **Nordic Loft**. I wanted the website to have a simple and modern Scandinavian-inspired design, using soft colours, clean typography and a minimal layout.
 
-<h1>Built with</h1>
+The website uses API data to display products and allows users to browse individual products and interact with a shopping cart.
 
-- Figma
+## Features
 
-- HTML
+* Product overview with products fetched from an API
+* Individual product pages
+* Add-to-cart functionality
+* Shopping cart
+* Checkout form
+* Login page
+* Registration page
+* Responsive layout
+* Custom design created in Figma
 
-- CSS
+## Built With
 
-- JavaScript
+* HTML
+* CSS
+* JavaScript
+* REST API
+* Figma
 
-<h1>Getting started</h1>
+## Design
 
-1. Clone the repo:
+The website was designed in Figma before development. The goal was to create a clean and organised interface inspired by Scandinavian interior design and e-commerce websites.
+
+## Getting Started
+
+To run the project locally:
+
+1. Clone the repository:
+
 ```bash
-gh repo clone siljeloge/project-exam-1
+git clone https://github.com/siljeloge/project-exam-1.git
 ```
 
-2. Install the dependencies:
-```
-npm install
-```
+2. Open the project folder in Visual Studio Code.
 
-<h1>Running</h1>
+3. Open `index.html` using Live Server or another local development server.
 
-To run the app, run the following commands:
+No additional dependencies are required.
 
-```bash
-npm run start
-```
+## What I Learned
 
-<h1>Contact</h1>
+This project gave me practical experience with building a larger website from design to finished implementation.
 
-Email: sillog02326@stud.noroff.no
+I worked with:
 
+* Fetching and displaying data from an API
+* JavaScript DOM manipulation
+* Creating dynamic product pages
+* Shopping cart functionality
+* Form handling
+* Responsive web design
+* Turning a Figma design into a working website
 
+## Live Demo
 
+The project is deployed with GitHub Pages:
 
+https://siljeloge.github.io/project-exam-1/
 
+## Contact
 
+**Silje Loge**
 
+GitHub: https://github.com/siljeloge
 
-
+Email: [silje_loge@hotmail.com](mailto:silje_loge@hotmail.com)
